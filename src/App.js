@@ -1,20 +1,27 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./App.css";
 
+// {I love Melanie with all my heart!}
+
 import axios from "axios";
+import moment from "moment/moment";
 
 function App() {
   const [weatherInfo, setWeatherInfo] = useState(null);
   const inputRef = useRef(null);
 
+  useEffect(() => {
+    fetchWeatherInfo();
+  }, []); // Focus on input when component mounts
+
   const fetchWeatherInfo = (e) => {
-    e.preventDefault();
+    e?.preventDefault();
 
     const options = {
       method: "GET",
-      url: "https://api.tomorrow.io/v4/weather/realtime",
+      url: "https://api.tomorrow.io/v4/weather/history/recent",
       params: {
-        location: inputRef.current.value, // Replace with your zipcode or city name
+        location: inputRef.current.value || "23229",
         units: "imperial",
         apikey: "cCntGe8w9ZA76OYa2PpQ9faaqTCLCOms",
       },
@@ -42,6 +49,12 @@ function App() {
         </button>
       </form>
       <h2>{weatherInfo?.location.name}</h2>
+      <h3>
+        {moment(weatherInfo?.timelines?.daily[1].values?.sunriseTime).format(
+          "LLL"
+        )}
+        {/* {weatherInfo && weatherInfo?.timelines?.daily[1].values?.sunriseTime} */}
+      </h3>
     </div>
   );
 }
