@@ -33,7 +33,7 @@ function App() {
         console.log(response.data);
       })
       .catch(function (error) {
-        console.error(error);
+        alert(error.message);
       });
   };
 
@@ -48,9 +48,11 @@ function App() {
       </form>
       <h2>{weatherInfo?.location.name}</h2>
       <h3>
-        {moment(weatherInfo?.timelines?.daily[1].values?.sunriseTime).format(
-          "LLL"
-        )}
+        {weatherInfo &&
+          `Sunrise: ${moment(
+            weatherInfo?.timelines?.daily[1].values?.sunriseTime
+          ).format("LLL")}`}
+
         {/* {weatherInfo && weatherInfo?.timelines?.daily[1].values?.sunriseTime} */}
       </h3>
     </div>
