@@ -7,7 +7,7 @@ import moment from "moment/moment";
 function App() {
   const [weatherInfo, setWeatherInfo] = useState(null);
   const inputRef = useRef(null);
-  const [magicNumbers] = useState([12, 24, 36, 48, 60, 100]);
+  const [magicNumbers, setMagicNumbers] = useState([12, 24, 36, 48, 60, 100]);
   const [totalOfMagicNumbers, setTotalOfMagicNumbers] = useState(0);
 
   useEffect(() => {
