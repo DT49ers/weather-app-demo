@@ -1,8 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./App.css";
 
-// {I love Melanie with all my heart!}
-
 import axios from "axios";
 import moment from "moment/moment";
 
